@@ -98,11 +98,11 @@ function PreviewCards() {
   };
 
   const items = [
-    { title: "Casio FX-991ES Plus", price: "₹950", ai: "₹850–₹1000", tag: "Calculator" },
-    { title: "DSA Handwritten Notes", price: "₹120", ai: "₹100–₹150", tag: "Notes" },
-    { title: "Hero Sprint Cycle", price: "₹3,200", ai: "₹2,800–₹3,500", tag: "Cycle", image: "https://img.sanishtech.com/u/6265559bd1a743db969c3886de8a91b7.jpg" },
-    { title: "MacBook Air M1", price: "₹45,000", ai: "₹42k–₹48k", tag: "Electronics" },
-    { title: "Engineering Drawing Kit", price: "₹450", ai: "₹400–₹500", tag: "Stationery" },
+    { id: "calc", title: "Casio FX-991ES Plus", price: "₹950", ai: "₹850–₹1000", tag: "Calculator" },
+    { id: "notes", title: "DSA Handwritten Notes", price: "₹120", ai: "₹100–₹150", tag: "Notes" },
+    { id: "cycle", title: "Hero Sprint Cycle", price: "₹3,200", ai: "₹2,800–₹3,500", tag: "Cycle", image: "https://img.sanishtech.com/u/6265559bd1a743db969c3886de8a91b7.jpg" },
+    { id: "mac", title: "MacBook Air M1", price: "₹45,000", ai: "₹42k–₹48k", tag: "Electronics" },
+    { id: "kit", title: "Engineering Drawing Kit", price: "₹450", ai: "₹400–₹500", tag: "Stationery" },
   ];
 
   return (
@@ -129,34 +129,36 @@ function PreviewCards() {
       >
         {items.map((it, i) => (
           <motion.div
-            key={it.title}
+            key={it.id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + i * 0.1 }}
-            className="group w-[280px] shrink-0 snap-start rounded-xl border border-border bg-card p-4 shadow-soft sm:w-[320px]"
+            className="group w-[280px] shrink-0 snap-start rounded-xl border border-border bg-card p-4 shadow-soft sm:w-[320px] hover:border-primary/30 hover:shadow-elegant transition-all"
           >
-            {it.image ? (
-              <div className="mb-3 aspect-[4/3] overflow-hidden rounded-lg border border-border/40">
-                <img 
-                  src={it.image} 
-                  alt={it.title} 
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
-                />
+            <Link to="/product/$productId" params={{ productId: it.id }} className="block h-full cursor-pointer">
+              {it.image ? (
+                <div className="mb-3 aspect-[4/3] overflow-hidden rounded-lg border border-border/40">
+                  <img 
+                    src={it.image} 
+                    alt={it.title} 
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                  />
+                </div>
+              ) : (
+                <div className="mb-3 aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/10 to-accent/10" />
+              )}
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-muted-foreground">{it.tag}</span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                  <ShieldCheck className="h-3 w-3" /> Verified
+                </span>
               </div>
-            ) : (
-              <div className="mb-3 aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/10 to-accent/10" />
-            )}
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">{it.tag}</span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
-                <ShieldCheck className="h-3 w-3" /> Verified
-              </span>
-            </div>
-            <h3 className="mt-2 font-semibold text-foreground">{it.title}</h3>
-            <div className="mt-1 flex items-baseline justify-between">
-              <span className="text-lg font-bold">{it.price}</span>
-              <span className="text-[10px] font-medium text-accent">AI: {it.ai}</span>
-            </div>
+              <h3 className="mt-2 font-semibold text-foreground group-hover:text-primary transition-colors">{it.title}</h3>
+              <div className="mt-1 flex items-baseline justify-between">
+                <span className="text-lg font-bold">{it.price}</span>
+                <span className="text-[10px] font-medium text-accent">AI: {it.ai}</span>
+              </div>
+            </Link>
           </motion.div>
         ))}
       </div>
