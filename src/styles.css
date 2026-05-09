@@ -52,10 +52,10 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.04 270);
 
-  /* Deep indigo / violet */
-  --primary: oklch(0.42 0.21 280);
-  --primary-foreground: oklch(0.99 0.005 270);
-  --primary-glow: oklch(0.62 0.24 295);
+  /* Premium Deep Teal */
+  --primary: #0A4A5A;
+  --primary-foreground: #FFFFFF;
+  --primary-glow: #0f6d85;
 
   --secondary: oklch(0.96 0.015 270);
   --secondary-foreground: oklch(0.22 0.05 270);
@@ -76,7 +76,7 @@
 
   --border: oklch(0.92 0.012 270);
   --input: oklch(0.92 0.012 270);
-  --ring: oklch(0.62 0.24 295);
+  --ring: #0A4A5A;
 
   --gradient-hero: radial-gradient(
       120% 80% at 80% 0%,
@@ -91,11 +91,11 @@
     linear-gradient(180deg, oklch(0.99 0.005 270) 0%, oklch(0.97 0.012 270) 100%);
   --gradient-primary: linear-gradient(
     135deg,
-    oklch(0.42 0.21 280) 0%,
-    oklch(0.62 0.24 295) 100%
+    #0A4A5A 0%,
+    #0f6d85 100%
   );
-  --shadow-elegant: 0 20px 60px -20px oklch(0.42 0.21 280 / 0.35);
-  --shadow-soft: 0 8px 24px -8px oklch(0.42 0.21 280 / 0.12);
+  --shadow-elegant: 0 20px 60px -20px rgba(10, 74, 90, 0.35);
+  --shadow-soft: 0 8px 24px -8px rgba(10, 74, 90, 0.12);
 }
 
 .dark {
@@ -105,9 +105,9 @@
   --card-foreground: oklch(0.98 0.005 270);
   --popover: oklch(0.18 0.03 270);
   --popover-foreground: oklch(0.98 0.005 270);
-  --primary: oklch(0.7 0.22 295);
-  --primary-foreground: oklch(0.14 0.025 270);
-  --primary-glow: oklch(0.78 0.2 300);
+  --primary: #0A4A5A;
+  --primary-foreground: #FFFFFF;
+  --primary-glow: #0f6d85;
   --secondary: oklch(0.24 0.04 270);
   --secondary-foreground: oklch(0.98 0.005 270);
   --muted: oklch(0.24 0.04 270);
@@ -116,7 +116,7 @@
   --accent-foreground: oklch(0.14 0.025 270);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.7 0.22 295);
+  --ring: #0A4A5A;
 }
 
 @layer base {
@@ -158,8 +158,8 @@
   }
   .grid-pattern {
     background-image:
-      linear-gradient(to right, oklch(0.42 0.21 280 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.42 0.21 280 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgba(10, 74, 90, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 74, 90, 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 100%);
   }
