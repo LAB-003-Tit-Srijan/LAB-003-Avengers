@@ -1,26 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/landing/Nav";
+import { Hero } from "@/components/landing/Hero";
+import { TrustSection } from "@/components/landing/TrustSection";
+import { Features } from "@/components/landing/Features";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { AIPriceShowcase } from "@/components/landing/AIPriceShowcase";
+import { Testimonials } from "@/components/landing/Testimonials";
+import { FAQ } from "@/components/landing/FAQ";
+import { Footer } from "@/components/landing/Footer";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Kampus — India's first verified student marketplace" },
+      {
+        name: "description",
+        content:
+          "Buy, sell, rent, and exchange on campus — safely. Verified students only. AI-powered fair pricing. Real-time chat and meetups.",
+      },
+      { property: "og:title", content: "Kampus — Verified Student Marketplace" },
+      {
+        property: "og:description",
+        content:
+          "A safer marketplace for college students. Verified .edu / .ac.in users only, AI fair pricing, and trust scores that mean something.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Nav />
+      <main>
+        <Hero />
+        <TrustSection />
+        <Features />
+        <HowItWorks />
+        <AIPriceShowcase />
+        <Testimonials />
+        <FAQ />
+      </main>
+      <Footer />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
