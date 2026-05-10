@@ -50,7 +50,9 @@ export function AIPriceShowcase() {
                 Your listing
               </div>
               <div className="mt-2 font-display text-lg font-bold">Casio FX-991ES Plus</div>
-              <div className="mt-1 text-sm text-muted-foreground">Scientific calculator · 1 year old · Good condition</div>
+              <div className="mt-1 text-sm text-muted-foreground">
+                Scientific calculator · 1 year old · Good condition
+              </div>
             </div>
 
             <div className="mt-4 rounded-xl border border-primary/20 bg-gradient-to-br from-primary/8 to-accent/8 p-5">

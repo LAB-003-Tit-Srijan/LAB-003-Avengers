@@ -6,10 +6,11 @@ export const Route = createFileRoute("/reels")({
   head: () => ({
     meta: [
       { title: "Marketplace Reels · Kampus" },
-      { 
-        name: "description", 
-        content: "Discover amazing products on campus through short video reels. Swipe, explore, and shop safely." 
-      }
+      {
+        name: "description",
+        content:
+          "Discover amazing products on campus through short video reels. Swipe, explore, and shop safely.",
+      },
     ],
   }),
 });

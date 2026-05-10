@@ -1,0 +1,15 @@
+site:
+  title: Kampus Documentation
+  url: https://kampus-verified-exchange.netlify.app
+  start_page: kampus::index.adoc
+content:
+  sources:
+  - url: .
+    branches: HEAD
+    start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+output:
+  dir: ./public/docs

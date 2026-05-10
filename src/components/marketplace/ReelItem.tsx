@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { 
-  Heart, 
-  MessageSquare, 
-  Share2, 
-  ShoppingCart, 
-  ShieldCheck, 
-  MapPin, 
-  Volume2, 
-  VolumeX 
+import {
+  Heart,
+  MessageSquare,
+  Share2,
+  ShoppingCart,
+  ShieldCheck,
+  MapPin,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,7 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
 
   useEffect(() => {
     if (isActive) {
-      videoRef.current?.play().catch(e => console.log("Autoplay blocked", e));
+      videoRef.current?.play().catch((e) => console.log("Autoplay blocked", e));
     } else {
       videoRef.current?.pause();
       if (videoRef.current) videoRef.current.currentTime = 0;
@@ -54,14 +54,14 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <AnimatePresence>
           {!isActive && (
-             <motion.div 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
-               className="bg-black/20 backdrop-blur-sm p-4 rounded-full"
-             >
-               <VolumeX className="h-12 w-12 text-white/50" />
-             </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-black/20 backdrop-blur-sm p-4 rounded-full"
+            >
+              <VolumeX className="h-12 w-12 text-white/50" />
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
@@ -72,7 +72,7 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
       {/* Right Side Actions */}
       <div className="absolute right-4 bottom-48 flex flex-col gap-6 z-10">
         <div className="flex flex-col items-center gap-1">
-          <button 
+          <button
             onClick={handleLike}
             className="group flex h-14 w-14 items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/20 transition-all active:scale-75 shadow-lg"
           >
@@ -80,10 +80,14 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
               animate={isLiked ? { scale: [1, 1.5, 1] } : { scale: 1 }}
               transition={{ duration: 0.3 }}
             >
-              <Heart className={`h-7 w-7 transition-colors ${isLiked ? "fill-red-500 text-red-500" : "text-white group-hover:text-red-400"}`} />
+              <Heart
+                className={`h-7 w-7 transition-colors ${isLiked ? "fill-red-500 text-red-500" : "text-white group-hover:text-red-400"}`}
+              />
             </motion.div>
           </button>
-          <span className="text-xs font-bold text-white drop-shadow-lg">{reel.likes + (isLiked ? 1 : 0)}</span>
+          <span className="text-xs font-bold text-white drop-shadow-lg">
+            {reel.likes + (isLiked ? 1 : 0)}
+          </span>
         </div>
 
         <div className="flex flex-col items-center gap-1">
@@ -102,7 +106,11 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
 
         <div className="mt-2 flex flex-col items-center gap-1 relative">
           <div className="p-0.5 rounded-full bg-gradient-primary shadow-lg">
-            <img src={reel.seller.avatar} alt={reel.seller.name} className="h-14 w-14 rounded-full border-2 border-black/20 bg-secondary" />
+            <img
+              src={reel.seller.avatar}
+              alt={reel.seller.name}
+              className="h-14 w-14 rounded-full border-2 border-black/20 bg-secondary"
+            />
           </div>
           <button className="absolute -bottom-2 bg-primary text-[10px] text-white px-3 py-1 rounded-full font-black shadow-lg border border-white/20">
             FOLLOW
@@ -138,13 +146,15 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
               <p className="text-3xl font-black text-primary drop-shadow-lg">
                 {reel.product.price}
               </p>
-              <span className="text-[10px] text-white/40 uppercase font-bold tracking-tighter">Verified Price</span>
+              <span className="text-[10px] text-white/40 uppercase font-bold tracking-tighter">
+                Verified Price
+              </span>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-2">
-            <Button 
+            <Button
               asChild
               className="flex-1 bg-primary text-white hover:bg-primary/90 shadow-elegant rounded-2xl h-14 font-bold text-base transition-transform active:scale-95"
             >
@@ -153,8 +163,8 @@ export function ReelItem({ reel, isActive }: ReelItemProps) {
                 View Product
               </Link>
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="bg-white/10 backdrop-blur-xl border-white/20 text-white hover:bg-white/20 rounded-2xl h-14 w-14 p-0 shadow-lg transition-transform active:scale-95"
               onClick={() => setIsMuted(!isMuted)}
             >

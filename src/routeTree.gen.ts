@@ -16,6 +16,9 @@ import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductProductIdRouteImport } from './routes/product/$productId'
 import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
+import { Route as AuthedDashboardIndexRouteImport } from './routes/_authed/dashboard/index'
+import { Route as AuthedDashboardSellerRouteImport } from './routes/_authed/dashboard/seller'
+import { Route as AuthedDashboardBuyerRouteImport } from './routes/_authed/dashboard/buyer'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -51,22 +54,42 @@ const AuthedDashboardRoute = AuthedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthedRoute,
 } as any)
+const AuthedDashboardIndexRoute = AuthedDashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthedDashboardRoute,
+} as any)
+const AuthedDashboardSellerRoute = AuthedDashboardSellerRouteImport.update({
+  id: '/seller',
+  path: '/seller',
+  getParentRoute: () => AuthedDashboardRoute,
+} as any)
+const AuthedDashboardBuyerRoute = AuthedDashboardBuyerRouteImport.update({
+  id: '/buyer',
+  path: '/buyer',
+  getParentRoute: () => AuthedDashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reels': typeof ReelsRoute
   '/signup': typeof SignupRoute
-  '/dashboard': typeof AuthedDashboardRoute
+  '/dashboard': typeof AuthedDashboardRouteWithChildren
   '/product/$productId': typeof ProductProductIdRoute
+  '/dashboard/buyer': typeof AuthedDashboardBuyerRoute
+  '/dashboard/seller': typeof AuthedDashboardSellerRoute
+  '/dashboard/': typeof AuthedDashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reels': typeof ReelsRoute
   '/signup': typeof SignupRoute
-  '/dashboard': typeof AuthedDashboardRoute
   '/product/$productId': typeof ProductProductIdRoute
+  '/dashboard/buyer': typeof AuthedDashboardBuyerRoute
+  '/dashboard/seller': typeof AuthedDashboardSellerRoute
+  '/dashboard': typeof AuthedDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -75,8 +98,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/reels': typeof ReelsRoute
   '/signup': typeof SignupRoute
-  '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/dashboard': typeof AuthedDashboardRouteWithChildren
   '/product/$productId': typeof ProductProductIdRoute
+  '/_authed/dashboard/buyer': typeof AuthedDashboardBuyerRoute
+  '/_authed/dashboard/seller': typeof AuthedDashboardSellerRoute
+  '/_authed/dashboard/': typeof AuthedDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,14 +113,19 @@ export interface FileRouteTypes {
     | '/signup'
     | '/dashboard'
     | '/product/$productId'
+    | '/dashboard/buyer'
+    | '/dashboard/seller'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
     | '/reels'
     | '/signup'
-    | '/dashboard'
     | '/product/$productId'
+    | '/dashboard/buyer'
+    | '/dashboard/seller'
+    | '/dashboard'
   id:
     | '__root__'
     | '/'
@@ -104,6 +135,9 @@ export interface FileRouteTypes {
     | '/signup'
     | '/_authed/dashboard'
     | '/product/$productId'
+    | '/_authed/dashboard/buyer'
+    | '/_authed/dashboard/seller'
+    | '/_authed/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,15 +200,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/dashboard/': {
+      id: '/_authed/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthedDashboardIndexRouteImport
+      parentRoute: typeof AuthedDashboardRoute
+    }
+    '/_authed/dashboard/seller': {
+      id: '/_authed/dashboard/seller'
+      path: '/seller'
+      fullPath: '/dashboard/seller'
+      preLoaderRoute: typeof AuthedDashboardSellerRouteImport
+      parentRoute: typeof AuthedDashboardRoute
+    }
+    '/_authed/dashboard/buyer': {
+      id: '/_authed/dashboard/buyer'
+      path: '/buyer'
+      fullPath: '/dashboard/buyer'
+      preLoaderRoute: typeof AuthedDashboardBuyerRouteImport
+      parentRoute: typeof AuthedDashboardRoute
+    }
   }
 }
 
+interface AuthedDashboardRouteChildren {
+  AuthedDashboardBuyerRoute: typeof AuthedDashboardBuyerRoute
+  AuthedDashboardSellerRoute: typeof AuthedDashboardSellerRoute
+  AuthedDashboardIndexRoute: typeof AuthedDashboardIndexRoute
+}
+
+const AuthedDashboardRouteChildren: AuthedDashboardRouteChildren = {
+  AuthedDashboardBuyerRoute: AuthedDashboardBuyerRoute,
+  AuthedDashboardSellerRoute: AuthedDashboardSellerRoute,
+  AuthedDashboardIndexRoute: AuthedDashboardIndexRoute,
+}
+
+const AuthedDashboardRouteWithChildren = AuthedDashboardRoute._addFileChildren(
+  AuthedDashboardRouteChildren,
+)
+
 interface AuthedRouteChildren {
-  AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedDashboardRoute: typeof AuthedDashboardRouteWithChildren
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
-  AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedDashboardRoute: AuthedDashboardRouteWithChildren,
 }
 
 const AuthedRouteWithChildren =

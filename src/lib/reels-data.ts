@@ -20,7 +20,8 @@ export interface Reel {
 export const REELS_DATA: Reel[] = [
   {
     id: "reel-1",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-girl-in-a-skirt-running-on-the-grass-39887-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-girl-in-a-skirt-running-on-the-grass-39887-large.mp4",
     product: {
       id: "sneakers-1",
       name: "Nike Air Zoom Sneakers",
@@ -37,7 +38,8 @@ export const REELS_DATA: Reel[] = [
   },
   {
     id: "reel-2",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-young-man-sitting-on-a-bench-and-using-his-laptop-4485-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-young-man-sitting-on-a-bench-and-using-his-laptop-4485-large.mp4",
     product: {
       id: "laptop-1",
       name: "MacBook Air M1 2020",
@@ -54,7 +56,8 @@ export const REELS_DATA: Reel[] = [
   },
   {
     id: "reel-3",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-at-the-office-4481-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-at-the-office-4481-large.mp4",
     product: {
       id: "monitor-1",
       name: "Dell 27-inch 4K Monitor",
@@ -71,7 +74,8 @@ export const REELS_DATA: Reel[] = [
   },
   {
     id: "reel-4",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-unboxing-a-new-mobile-phone-41221-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-unboxing-a-new-mobile-phone-41221-large.mp4",
     product: {
       id: "phone-1",
       name: "iPhone 15 Pro Max",
@@ -88,7 +92,8 @@ export const REELS_DATA: Reel[] = [
   },
   {
     id: "reel-5",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-student-reading-in-the-university-library-4355-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-student-reading-in-the-university-library-4355-large.mp4",
     product: {
       id: "book-1",
       name: "Quantum Mechanics Vol 1",
@@ -105,7 +110,8 @@ export const REELS_DATA: Reel[] = [
   },
   {
     id: "reel-6",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-coffee-cup-on-top-of-a-table-3298-large.mp4",
+    videoUrl:
+      "https://assets.mixkit.co/videos/preview/mixkit-coffee-cup-on-top-of-a-table-3298-large.mp4",
     product: {
       id: "hostel-1",
       name: "Hostel Coffee Machine",
@@ -119,5 +125,5 @@ export const REELS_DATA: Reel[] = [
       isVerified: true,
     },
     likes: 567,
-  }
+  },
 ];

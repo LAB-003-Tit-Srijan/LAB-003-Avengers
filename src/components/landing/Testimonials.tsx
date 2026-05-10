@@ -2,9 +2,22 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const items = [
-  { quote: "Sold my old calculator in 20 minutes. The AI price was spot on — I would've underpriced it on OLX.", name: "Aarav S.", role: "B.Tech, IIT Madras" },
-  { quote: "Finally a marketplace that doesn't feel sketchy. Everyone here is actually a student.", name: "Sneha P.", role: "BBA, Christ University" },
-  { quote: "Got DSA notes from a senior and a cycle in the same week. Kampus is now muscle memory.", name: "Rohit K.", role: "CSE, BITS Pilani" },
+  {
+    quote:
+      "Sold my old calculator in 20 minutes. The AI price was spot on — I would've underpriced it on OLX.",
+    name: "Aarav S.",
+    role: "B.Tech, IIT Madras",
+  },
+  {
+    quote: "Finally a marketplace that doesn't feel sketchy. Everyone here is actually a student.",
+    name: "Sneha P.",
+    role: "BBA, Christ University",
+  },
+  {
+    quote: "Got DSA notes from a senior and a cycle in the same week. Kampus is now muscle memory.",
+    name: "Rohit K.",
+    role: "CSE, BITS Pilani",
+  },
 ];
 
 export function Testimonials() {
@@ -12,7 +25,9 @@ export function Testimonials() {
     <section className="bg-background py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Loved by students</span>
+          <span className="text-sm font-semibold uppercase tracking-wider text-primary">
+            Loved by students
+          </span>
           <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
             The campus marketplace, finally done right.
           </h2>

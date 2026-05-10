@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Platform Architecture :: Kampus Documentation</title>
+    <link rel="canonical" href="https://kampus-verified-exchange.netlify.app/kampus/architecture.html">
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://kampus-verified-exchange.netlify.app">Kampus Documentation</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="kampus" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Kampus Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="buying.html">How to Buy</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="selling.html">How to Sell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="safety.html">Trust &amp; Safety</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="architecture.html">Architecture</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Kampus Documentation</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Kampus Documentation</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Kampus Documentation</a></li>
+    <li><a href="architecture.html">Architecture</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="file:///C:/Users/ryash/kampus%20new/campus-verified-exchange/docs/modules/ROOT/pages/architecture.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Platform Architecture</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kampus is built on a modern, high-performance web stack designed for scalability, speed, and real-time interaction. Below is a high-level overview of our architecture and technology stack.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frontend_application"><a class="anchor" href="#_frontend_application"></a>Frontend Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The user interface is built as a Single Page Application (SPA) prioritizing fluid interactions and a premium "luxury startup" aesthetic.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Framework:</strong> React 19 (compiled via Vite)</p>
+</li>
+<li>
+<p><strong>Routing:</strong> TanStack Router for fully type-safe, dynamic client-side routing (e.g., dynamic product pages).</p>
+</li>
+<li>
+<p><strong>Styling:</strong> Tailwind CSS v4 coupled with <code>shadcn/ui</code> and Radix UI primitives for accessible, customizable components.</p>
+</li>
+<li>
+<p><strong>Animations:</strong> Framer Motion is used for cinematic transitions, hover effects, and the dynamic hero slideshow.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_features_logic"><a class="anchor" href="#_core_features_logic"></a>Core Features &amp; Logic</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Authentication &amp; Verification (Planned):</strong> Designed to integrate with Supabase or a custom Node.js backend to enforce strict <code>.edu</code> or <code>.ac.in</code> email verification.</p>
+</li>
+<li>
+<p><strong>Real-Time Messaging:</strong> The <code>ChatModal</code> component simulates real-time WebSocket communication (e.g., via Socket.io) for buyer-seller negotiations, complete with typing indicators and online statuses.</p>
+</li>
+<li>
+<p><strong>AI Recommendations Engine:</strong> The <code>AIRecommendations</code> component analyzes mocked user browsing context to suggest products dynamically across "Based on Interests", "Also Viewed", and "Trending" categories.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation_site"><a class="anchor" href="#_documentation_site"></a>Documentation Site</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This documentation is generated statically using <strong>Antora</strong>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Content is written in <code>AsciiDoc</code>.</p>
+</li>
+<li>
+<p>The Antora build process compiles the <code>.adoc</code> files into a static HTML site which is injected directly into the Vite <code>public/docs</code> directory.</p>
+</li>
+<li>
+<p>This allows the main React application to serve the documentation seamlessly alongside the primary marketplace routes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

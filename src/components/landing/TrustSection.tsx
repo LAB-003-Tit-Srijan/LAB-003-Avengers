@@ -22,8 +22,8 @@ export function TrustSection() {
             Built for campus, not for strangers.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            OLX puts you in a room with the entire internet. Kampus is a safer
-            marketplace where every buyer and seller is a verified student from a real college.
+            OLX puts you in a room with the entire internet. Kampus is a safer marketplace where
+            every buyer and seller is a verified student from a real college.
           </p>
         </div>
 
@@ -40,13 +40,24 @@ export function TrustSection() {
             <div className="px-2 sm:px-6 py-4 text-center text-primary">Kampus</div>
           </div>
           {compare.map((row) => (
-            <div key={row.label} className="grid grid-cols-[1.5fr_1fr_1fr] border-b border-border last:border-0">
+            <div
+              key={row.label}
+              className="grid grid-cols-[1.5fr_1fr_1fr] border-b border-border last:border-0"
+            >
               <div className="px-3 sm:px-6 py-4 text-[11px] sm:text-sm">{row.label}</div>
               <div className="grid place-items-center px-2 sm:px-6 py-4">
-                {row.olx ? <Check className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" /> : <X className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground/50" />}
+                {row.olx ? (
+                  <Check className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+                ) : (
+                  <X className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground/50" />
+                )}
               </div>
               <div className="grid place-items-center px-2 sm:px-6 py-4">
-                {row.kampus ? <Check className="h-3 w-3 sm:h-4 sm:w-4 text-success" /> : <X className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground/50" />}
+                {row.kampus ? (
+                  <Check className="h-3 w-3 sm:h-4 sm:w-4 text-success" />
+                ) : (
+                  <X className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground/50" />
+                )}
               </div>
             </div>
           ))}
@@ -61,7 +72,9 @@ export function TrustSection() {
           ].map((s) => (
             <div key={s.label} className="rounded-xl border border-border bg-card p-5 shadow-soft">
               <s.icon className="h-5 w-5 text-primary" />
-              <div className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{s.label}</div>
+              <div className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {s.label}
+              </div>
               <div className="mt-1 font-display text-lg font-bold">{s.value}</div>
             </div>
           ))}

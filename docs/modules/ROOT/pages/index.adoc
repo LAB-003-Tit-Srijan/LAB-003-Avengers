@@ -1,0 +1,3 @@
+= Getting Started with Kampus
+
+Welcome to Kampus, the premier student-only marketplace. Our platform ensures safety and reliability by strictly verifying all users through their university emails (`.edu` or `.ac.in`). Once verified, you get full access to buy and sell within your university ecosystem.

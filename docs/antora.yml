@@ -1,0 +1,6 @@
+name: kampus
+title: Kampus Documentation
+version: ~
+start_page: ROOT:index.adoc
+nav:
+- modules/ROOT/nav.adoc

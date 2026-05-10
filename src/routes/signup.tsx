@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { GraduationCap, ShieldCheck, Sparkles } from "lucide-react";
+import { GraduationCap, ShieldCheck, Sparkles, ShoppingBag, User } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +19,7 @@ function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"buyer" | "seller">("buyer");
   const [loading, setLoading] = useState(false);
 
   const looksLikeCollege = email ? isCollegeEmail(email) : null;
@@ -33,21 +35,40 @@ function SignupPage() {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `${window.location.origin}/dashboard`,
-        data: { full_name: name },
+        data: {
+          full_name: name,
+          role: role,
+          current_mode: role,
+        },
       },
     });
-    setLoading(false);
+
     if (error) {
       toast.error(error.message);
+      setLoading(false);
       return;
     }
-    toast.success("Welcome to Kampus! You're verified.");
-    navigate({ to: "/dashboard" });
+
+    // Explicitly update profile just in case the trigger doesn't handle custom user_metadata
+    if (data.user) {
+      await supabase
+        .from("profiles")
+        .update({
+          role: role,
+          current_mode: role,
+          full_name: name,
+        })
+        .eq("id", data.user.id);
+    }
+
+    setLoading(false);
+    toast.success(`Welcome to Kampus as a ${role}!`);
+    navigate({ to: role === "seller" ? "/dashboard/seller" : "/dashboard/buyer" });
   }
 
   return (
@@ -68,16 +89,61 @@ function SignupPage() {
             </Link>
           </p>
 
-          <form onSubmit={onSubmit} className="mt-8 space-y-4">
+          <div className="mt-8 space-y-2">
+            <Label className="text-xs font-bold text-muted-foreground uppercase tracking-widest px-1">
+              Choose your primary path
+            </Label>
+            <div className="grid grid-cols-2 gap-3 p-1.5 bg-muted rounded-2xl border border-border">
+              <button
+                onClick={() => setRole("buyer")}
+                className={cn(
+                  "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+                  role === "buyer"
+                    ? "bg-white shadow-soft text-[#0A4A5A]"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                <User className="h-4 w-4" /> Buyer
+              </button>
+              <button
+                onClick={() => setRole("seller")}
+                className={cn(
+                  "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+                  role === "seller"
+                    ? "bg-white shadow-soft text-[#0A4A5A]"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                <ShoppingBag className="h-4 w-4" /> Seller
+              </button>
+            </div>
+          </div>
+
+          <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="name">Full name</Label>
-              <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Aarav Sharma" />
+              <Input
+                id="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Aarav Sharma"
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="email">College email</Label>
-              <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@college.ac.in" />
+              <Input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@college.ac.in"
+              />
               {email && looksLikeCollege === false && (
-                <p className="text-xs text-destructive">Use a college email (.edu, .ac.in, .edu.in)</p>
+                <p className="text-xs text-destructive">
+                  Use a college email (.edu, .ac.in, .edu.in)
+                </p>
               )}
               {looksLikeCollege && (
                 <p className="inline-flex items-center gap-1 text-xs font-medium text-success">
@@ -87,10 +153,21 @@ function SignupPage() {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input
+                id="password"
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <p className="text-xs text-muted-foreground">At least 8 characters.</p>
             </div>
-            <Button type="submit" disabled={loading} className="h-11 w-full bg-gradient-primary text-primary-foreground hover:opacity-90">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="h-11 w-full bg-gradient-primary text-primary-foreground hover:opacity-90"
+            >
               {loading ? "Creating account…" : "Create verified account"}
             </Button>
           </form>
@@ -98,9 +175,9 @@ function SignupPage() {
       </div>
 
       <div className="relative hidden overflow-hidden lg:block">
-        <img 
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1920" 
-          alt="College life" 
+        <img
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1920"
+          alt="College life"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />

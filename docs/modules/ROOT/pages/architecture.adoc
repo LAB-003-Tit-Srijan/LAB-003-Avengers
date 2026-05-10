@@ -1,0 +1,26 @@
+= Platform Architecture
+
+Kampus is built on a modern, high-performance web stack designed for scalability, speed, and real-time interaction. Below is a high-level overview of our architecture and technology stack.
+
+== Frontend Application
+
+The user interface is built as a Single Page Application (SPA) prioritizing fluid interactions and a premium "luxury startup" aesthetic.
+
+* *Framework:* React 19 (compiled via Vite)
+* *Routing:* TanStack Router for fully type-safe, dynamic client-side routing (e.g., dynamic product pages).
+* *Styling:* Tailwind CSS v4 coupled with `shadcn/ui` and Radix UI primitives for accessible, customizable components.
+* *Animations:* Framer Motion is used for cinematic transitions, hover effects, and the dynamic hero slideshow.
+
+== Core Features & Logic
+
+* *Authentication & Verification (Planned):* Designed to integrate with Supabase or a custom Node.js backend to enforce strict `.edu` or `.ac.in` email verification.
+* *Real-Time Messaging:* The `ChatModal` component simulates real-time WebSocket communication (e.g., via Socket.io) for buyer-seller negotiations, complete with typing indicators and online statuses.
+* *AI Recommendations Engine:* The `AIRecommendations` component analyzes mocked user browsing context to suggest products dynamically across "Based on Interests", "Also Viewed", and "Trending" categories.
+
+== Documentation Site
+
+This documentation is generated statically using *Antora*.
+
+* Content is written in `AsciiDoc`.
+* The Antora build process compiles the `.adoc` files into a static HTML site which is injected directly into the Vite `public/docs` directory.
+* This allows the main React application to serve the documentation seamlessly alongside the primary marketplace routes.

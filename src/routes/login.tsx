@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, ShoppingBag, User } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,19 +17,28 @@ function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [mode, setMode] = useState<"buyer" | "seller">("buyer");
   const [loading, setLoading] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
     if (error) {
       toast.error(error.message);
+      setLoading(false);
       return;
     }
-    toast.success("Welcome back!");
-    navigate({ to: "/dashboard" });
+
+    // Update current mode in profile
+    if (data.user) {
+      await supabase.from("profiles").update({ current_mode: mode }).eq("id", data.user.id);
+    }
+
+    setLoading(false);
+    toast.success(`Welcome back as a ${mode}!`);
+    navigate({ to: mode === "seller" ? "/dashboard/seller" : "/dashboard/buyer" });
   }
 
   return (
@@ -46,7 +56,8 @@ function LoginPage() {
               Welcome back to <span className="text-gradient">your campus</span>.
             </h2>
             <p className="mt-3 max-w-md text-muted-foreground">
-              Verified students. Fair AI prices. Real meetups. Sign in and pick up where you left off.
+              Verified students. Fair AI prices. Real meetups. Sign in and pick up where you left
+              off.
             </p>
           </div>
         </div>
@@ -68,16 +79,58 @@ function LoginPage() {
             </Link>
           </p>
 
-          <form onSubmit={onSubmit} className="mt-8 space-y-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 p-1.5 bg-muted rounded-2xl border border-border">
+            <button
+              onClick={() => setMode("buyer")}
+              className={cn(
+                "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+                mode === "buyer"
+                  ? "bg-white shadow-soft text-[#0A4A5A]"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <User className="h-4 w-4" /> I'm a Buyer
+            </button>
+            <button
+              onClick={() => setMode("seller")}
+              className={cn(
+                "flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all",
+                mode === "seller"
+                  ? "bg-white shadow-soft text-[#0A4A5A]"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <ShoppingBag className="h-4 w-4" /> I'm a Seller
+            </button>
+          </div>
+
+          <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="email">College email</Label>
-              <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@college.ac.in" />
+              <Input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@college.ac.in"
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input
+                id="password"
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <Button type="submit" disabled={loading} className="h-11 w-full bg-gradient-primary text-primary-foreground hover:opacity-90">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="h-11 w-full bg-gradient-primary text-primary-foreground hover:opacity-90"
+            >
               {loading ? "Signing in…" : "Sign in"}
             </Button>
           </form>

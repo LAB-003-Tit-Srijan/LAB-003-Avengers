@@ -18,9 +18,7 @@ function AuthedLayout() {
 
   if (loading || !user) {
     return (
-      <div className="grid min-h-screen place-items-center text-muted-foreground">
-        Loading…
-      </div>
+      <div className="grid min-h-screen place-items-center text-muted-foreground">Loading…</div>
     );
   }
 
@@ -34,7 +32,14 @@ function AuthedLayout() {
             </div>
             <span className="font-display text-xl font-bold">Kampus</span>
           </Link>
-          <Button variant="ghost" size="sm" onClick={() => { signOut(); navigate({ to: "/" }); }}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              signOut();
+              navigate({ to: "/" });
+            }}
+          >
             <LogOut className="mr-2 h-4 w-4" /> Sign out
           </Button>
         </div>

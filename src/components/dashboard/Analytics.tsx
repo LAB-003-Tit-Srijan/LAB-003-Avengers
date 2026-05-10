@@ -7,7 +7,12 @@ export function Analytics() {
     { label: "Total Views", value: "1,248", icon: Eye, change: "+12% vs last month" },
     { label: "Wishlist Adds", value: "34", icon: Heart, change: "Highly demanded" },
     { label: "Sold Items", value: "15", icon: ShoppingCart, change: "+3 this month" },
-    { label: "Estimated Revenue", value: "₹45,200", icon: DollarSign, change: "Across all sold items" },
+    {
+      label: "Estimated Revenue",
+      value: "₹45,200",
+      icon: DollarSign,
+      change: "Across all sold items",
+    },
   ];
 
   return (
@@ -21,7 +26,10 @@ export function Analytics() {
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
-            <div key={i} className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div
+              key={i}
+              className="rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
                 <div className="p-2 rounded-full bg-primary/10 text-primary">

@@ -27,10 +27,18 @@ export function Footer() {
             <span>· Built for India's campuses</span>
           </div>
           <div className="flex gap-6">
-            <a href="#features" className="hover:text-foreground">Features</a>
-            <a href="#faq" className="hover:text-foreground">FAQ</a>
-            <a href="/docs/index.html" className="hover:text-foreground">Docs</a>
-            <Link to="/login" className="hover:text-foreground">Sign in</Link>
+            <a href="#features" className="hover:text-foreground">
+              Features
+            </a>
+            <a href="#faq" className="hover:text-foreground">
+              FAQ
+            </a>
+            <a href="/docs/index.html" className="hover:text-foreground">
+              Docs
+            </a>
+            <Link to="/login" className="hover:text-foreground">
+              Sign in
+            </Link>
           </div>
         </div>
       </div>
